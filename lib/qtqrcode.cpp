@@ -116,8 +116,9 @@ void QtQrCode::setBaseQrCodeData(QRcode *qrCode)
 {
     d->width = qrCode->width;
     d->data.clear();
-    // TODO: Beware it here
-    d->data = (const char *) qrCode->data;
+	auto len = qrCode->width * qrCode->width;
+	QByteArray ba((char*) qrCode->data,len);
+    d->data = ba;
     QRcode_free(qrCode);
 }
 
